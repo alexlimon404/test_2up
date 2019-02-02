@@ -65,7 +65,6 @@ try {
     </table>
 
 </form>
-
 <hr>
 <h3>Добавить пользователя:</h3>
     <form action="" method="POST">
