@@ -6,10 +6,6 @@
  * Time: 6:07 PM
  */
 
-//Выводим сообщение об удачной регистрации
-if(isset($_GET['status']) and $_GET['status'] == 'ok')
-    echo '<b>Вы успешно зарегистрировались! Пожалуйста активируйте свой аккаунт!</b>';
-
 function emailValid($email)
 {
     if(function_exists('filter_var')){
@@ -39,12 +35,11 @@ function showErrorMessage($data)
         $err .= '<li style="color:red;">'. $data .'</li>'."\n";
         $err .= '</ul>'."\n";
         return $err;
-
 }
 
 $err = array();
 if(isset($_POST['submit'])) {
-    //Утюжим пришедшие данные
+    //Проверка
     if(empty($_POST['login']))
         $err[] = 'Поле Логин не может быть пустым!';
     if(empty($_POST['name']))
@@ -64,7 +59,6 @@ if(isset($_POST['submit'])) {
     } else {
         /*Проверяем существует ли у нас такой пользователь в БД*/
         $sql = 'SELECT `login` FROM `users`	WHERE `login` = :login';
-        //Подготавливаем PDO выражение для SQL запроса
         $stmt = $db->prepare($sql);
         $stmt->bindValue(':login', $_POST['login'], PDO::PARAM_STR);
         $stmt->execute();
@@ -85,7 +79,6 @@ if(isset($_POST['submit'])) {
                 $stmt->execute();
                 echo '<span style="color:red;">Добавил пользователя успешно</span>';
                 exit;
-            }
-
+        }
     }
 }
