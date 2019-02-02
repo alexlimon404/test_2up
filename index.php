@@ -21,9 +21,6 @@ define('DB_PASSWORD','');
 //Имя Базы Данных
 define('DATABASE','two_up');
 
-//Адрес хоста сайта
-define('HOST','http://'. $_SERVER['HTTP_HOST'] .'/');
-
 //Подключение к базе данных mySQL с помощью PDO
 try {
     $db = new PDO('mysql:host=localhost;dbname='.DATABASE, DB_USER, DB_PASSWORD, array(
