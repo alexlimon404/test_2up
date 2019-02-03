@@ -50,10 +50,8 @@ if(isset($_POST['submit'])) {
         $err[] = 'Поле Тип пользователя не может быть пустым';
     if(empty($_POST['email']))
         $err[] = 'Поле E-mail не может быть пустым';
-    else {
-        if(emailValid($_POST['email']) === false)
-            $err[] = 'Не правильно введен E-mail'."\n";
-    }
+    if(emailValid($_POST['email']) === false)
+        $err[] = 'Не правильно введен E-mail'."\n";
     if(count($err) > 0){
         echo showErrorMessage($err);
     } else {
@@ -63,7 +61,7 @@ if(isset($_POST['submit'])) {
         $stmt->bindValue(':login', $_POST['login'], PDO::PARAM_STR);
         $stmt->execute();
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
+        //Если пользователь существует, выводим ошибку
         if(count($rows) > 0) {
             $err[] = 'К сожалению Логин: <b>' . $_POST['login'] . '</b> занят!';
             echo showErrorMessage($err);
