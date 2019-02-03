@@ -32,38 +32,44 @@ try {
     die();
 }
 ?>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>2up</title>
+    </head>
+    <body>
     <h3>Найти пользователя:</h3>
-<form name="search" method="get">
-    <table>
-        <tr>
-            <td>Логин:</td>
-            <td><input type="text" size="30" name="login"></td>
-        </tr>
-        <tr>
-            <td>Имя:</td>
-            <td><input type="text" size="30" name="name"></td>
-        </tr>
-        <tr>
-            <td>Фамилия:</td>
-            <td><input type="text" size="30" name="surname"></td>
-        </tr>
-        <tr>
-            <td>E-mail:</td>
-            <td><input type="text" size="30" name="email"></td>
-        </tr>
-        <tr>
-            <td>Тип пользователя:</td>
-            <td><input type="radio" name="is_admin" value="2">Admin<input type="radio" name="is_admin" value="1">User</td>
-        </tr>
-        <tr>
-            <td> </td>
-            <td colspan="2"><input type="submit" value="find" name="submit"></td>
-        </tr>
-    </table>
-
-</form>
+    <form name="search" method="get">
+        <table>
+            <tr>
+                <td>Логин:</td>
+                <td><input type="text" size="30" name="login"></td>
+            </tr>
+            <tr>
+                <td>Имя:</td>
+                <td><input type="text" size="30" name="name"></td>
+            </tr>
+            <tr>
+                <td>Фамилия:</td>
+                <td><input type="text" size="30" name="surname"></td>
+            </tr>
+            <tr>
+                <td>E-mail:</td>
+                <td><input type="text" size="30" name="email"></td>
+            </tr>
+            <tr>
+                <td>Тип пользователя:</td>
+                <td><input type="radio" name="is_admin" value="2">Admin<input type="radio" name="is_admin" value="1">User</td>
+            </tr>
+            <tr>
+                <td> </td>
+                <td colspan="2"><input type="submit" value="find" name="submit"></td>
+            </tr>
+        </table>
+    </form>
 <hr>
-<h3>Добавить пользователя:</h3>
+    <h3>Добавить пользователя:</h3>
     <form action="" method="POST">
         <table>
             <tr>
@@ -92,7 +98,8 @@ try {
             </tr>
         </table>
     </form>
-
+    </body>
+</html>
 <?php
 //Подключаем добавление пользователей в БД
 include 'add_user.php';
@@ -100,7 +107,8 @@ include 'add_user.php';
 if(empty($_GET)) {
     return false;
 } else {
-$sql = "SELECT * FROM `users` WHERE `login` LIKE :login AND `first_name` LIKE :name AND `last_name` LIKE :surname AND `email` LIKE :email AND `is_admin` LIKE :is_admin";
+$sql = "SELECT * FROM `users` WHERE  
+`login` LIKE :login AND `first_name` LIKE :name AND `last_name` LIKE :surname AND `email` LIKE :email AND `is_admin` LIKE :is_admin";
 
 //Подготавливаем PDO выражение для SQL запроса
 $stmt = $db->prepare($sql);
